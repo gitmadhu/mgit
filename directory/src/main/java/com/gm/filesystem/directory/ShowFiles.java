@@ -1,6 +1,8 @@
 package com.gm.filesystem.directory;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class ShowFiles {
     /**
@@ -58,13 +60,18 @@ public class ShowFiles {
                 listFilesAndFilesSubDirectories(file.getAbsolutePath());
             }
         }
+        
+     Stream<File> stream = Arrays.stream(fList);
+        System.err.println(".........."+stream.filter(file -> file.isFile())
+        .findAny().get());
+        
     }
     public static void main (String[] args){
     	ShowFiles listFilesUtil = new ShowFiles();
     	//C:\hybris\hybris\bin
         final String directoryWindows ="C:/hybris/hybris/bin";
         listFilesUtil.listFiles(directoryWindows);
-        System.out.println("done.........");
+       // System.out.println("done.........");
     }
 
 
